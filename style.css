@@ -3,6 +3,8 @@
     --color-1: #252525;
     --color-2: #404040;
     --color-3: #555555;
+    --color-4: #707070;
+    --color-5: #858585;
     --color-font: #ffffff;
 }
 
@@ -54,7 +56,7 @@ nav {
     width: 100vw;
 }
 
-#section1 {
+.section1 {
     align-items: center;
     display: flex;
     height: 150px;
@@ -62,7 +64,22 @@ nav {
     width: 100vw;
 }
 
-#section2 {
+.section2 {
+    align-items: center;
+    background: var(--color-2);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: center;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    width: 300px;
+}
+
+.section3 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -71,19 +88,25 @@ nav {
 #add-btn {
     align-items: center;
     background: var(--color-1);
-    border-radius: 20px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
     display: flex;
     font-size: 30px;
     height: 80px;
     justify-content: center;
+    transition: 100ms;
     width: 300px;
+}
+
+#add-btn:hover {
+    background: var(--color-2);
 }
 
 article {
     align-items: center;
     background: var(--color-1);
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     height: 200px;
@@ -102,8 +125,8 @@ article {
     transition: 100ms;
 }
 
-.close-btn:hover {
-    color: var(--color-font);
+.close-btn:hover, .close-btn-form:hover {
+    color: var(--color-5);
 }
 
 .rating {
@@ -116,4 +139,53 @@ article {
     cursor: pointer;
     font-size: 30px;
     margin: 0 2px;
+}
+
+form {
+    align-items: center;
+    color: var(--color-0);
+    display: flex;
+    flex-direction: column;
+    height: 260px;
+    width: 260px;
+}
+
+input, select, option, button {
+    background: var(--color-3);
+    border: none;
+    border-radius: 10px;
+    color: var(--color-font);
+    cursor: pointer;
+    font-size: 18px;
+    height: 36px;
+    margin: 20px 0 10px 0;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+#add-form {
+    height: 50px;
+    margin-top: 30px;
+    transition: 100ms;
+    width: 200px;
+}
+
+#add-form:hover {
+    background: var(--color-4);
+}
+
+.close-btn-form {
+    display: flex;
+    color: var(--color-3);
+    cursor: pointer;
+    font-size: 18px;
+    justify-content: right;
+    margin-top: 10px;
+    margin-left: 250px;
+    transition: 100ms;
+}
+
+.hidden {
+    display: none;
 }

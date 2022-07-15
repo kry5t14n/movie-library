@@ -11,10 +11,23 @@
 <body>
     <nav></nav>
     <main>
-        <section id="section1">
-            <button id="add-btn">+ Add Movie</button>
+        <section class="section1">
+            <button id="add-btn" type="button">+ Add Movie</button>
         </section>
-        <section id="section2">
+        <section class="section2 hidden">
+            <span class="close-btn-form">&#9932;</span>
+            <form action="">
+                <input type="text" name="title" id="title" placeholder="Title">
+                <select name="genre" id="genre" placeholder="Genre">
+                    <option value="genre" selected hidden> - - Select genre - - </option>
+                    <option value="action">Action</option>
+                    <option value="drama">Drama</option>
+                    <option value="thriller">Thriller</option>
+                </select>
+                <button id="add-form" type="button">Add Movie</button>
+            </form>
+        </section>
+        <section class="section3">
             <article>
                 <span class="close-btn">&#9932;</span>
                 <h2>$Title</h2>
