@@ -189,3 +189,7 @@ input, select, option, button {
 .hidden {
     display: none;
 }
+
+.wrong {
+    border: 2px solid rgb(199, 0, 0);
+}
