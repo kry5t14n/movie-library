@@ -125,7 +125,7 @@ article {
     transition: 100ms;
 }
 
-.close-btn:hover, .close-btn-form:hover {
+.close-btn:hover, #close-btn-form:hover {
     color: var(--color-5);
 }
 
@@ -175,7 +175,7 @@ input, select, option, button {
     background: var(--color-4);
 }
 
-.close-btn-form {
+#close-btn-form {
     display: flex;
     color: var(--color-3);
     cursor: pointer;
