@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    let movies = [];
+    movies = JSON.parse(localStorage.getItem('movies'));
+
+    console.log(movies);
+
     class Movie {
         constructor(title, genre, stars, id) {
             this.title = title;
@@ -8,19 +13,30 @@ $(document).ready(function () {
         }
     }
 
-    const starsFunc = (id, title) => {
+    const starsFunc = (id, title, stars) => {
+
+        const setup = () => {
+            $(`.${id}rating`).children().each(function(i, val) {
+                val.innerHTML =  stars[i] == true ? "&#9733;" : "&#9734;"
+            });
+        }
+
+        setup();
+
         $(`.${id}${title}`).on('click', function () {
-            $(this).html("&#9733;");
+            let count = 0;
             let element = $(this);
             while(element.prev().hasClass("star")) {
                 element = element.prev();
-                element.html("&#9733;");
+                count++;
             }
-            element = $(this);
-            while(element.next().hasClass("star")) {
-                element = element.next();
-                element.html("&#9734;");
-            }
+            stars = stars.map(function(val, i) {
+                return i <= count ? true : false;
+            });
+            setup();
+            let mv = movies.find(el => el.title == title);
+            mv.stars = stars;
+            localStorage.setItem('movies', JSON.stringify(movies));
         });
     }
 
@@ -39,32 +55,28 @@ $(document).ready(function () {
         $("#title").removeClass("wrong");
     }
 
-    const displayMovie = (title, genre, id) => {
+    const displayMovie = (title, genre, id, stars) => {
         $(".section3").append(`
             <article>
                 <span class="close-btn" id="${id}${title}">&#9932;</span>
                 <h2>${title}</h2>
                 <h3>${genre}</h3>
-                <div class="rating">
+                <div class="${id}rating">
                     <span class="star ${id}${title}">&#9734;</span>
                     <span class="star ${id}${title}">&#9734;</span>
                     <span class="star ${id}${title}">&#9734;</span>
                     <span class="star ${id}${title}">&#9734;</span>
                     <span class="star ${id}${title}">&#9734;</span>
                 </div>
-            </article>`);
-        
-        starsFunc(id, title);
+            </article>`
+        );
+
+        starsFunc(id, title, stars);
         closeBtn(id, title);
     }
 
-    let movies = [];
-    movies = JSON.parse(localStorage.getItem('movies'));
-
-    console.log(movies);
-
     movies.forEach(mv => {
-        displayMovie(mv.title, mv.genre, mv.Id)
+        displayMovie(mv.title, mv.genre, mv.id, mv.stars)
     });
 
     $("#add-btn").on('click', function () {
@@ -81,11 +93,10 @@ $(document).ready(function () {
             let title = $("#title").val();
             let genre = $("#genre").val();
             let randomId = Math.round(Math.random()*100000);
-            let stars = 0;
+            let stars = [false, false, false, false, false];
+            displayMovie(title, genre, randomId, stars);
             movies.push(new Movie(title, genre, stars, randomId));
             localStorage.setItem('movies', JSON.stringify(movies));
-
-            displayMovie(title, genre, randomId);
 
             $(".section2").addClass("hidden");
 
